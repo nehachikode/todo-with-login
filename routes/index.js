@@ -1,9 +1,14 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
+const auth = require('../middleware/auth');
+const controller = require('../controllers/index');
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
-});
+router
+  .get('/', controller.list)
+  .get('/get-description/:id', controller.getDescription)
+  .post('/add', controller.add)
+  .update('/edit/:id', controller.update)
+  .delete('/delete/:id', controller.delete)
+
 
 module.exports = router;
